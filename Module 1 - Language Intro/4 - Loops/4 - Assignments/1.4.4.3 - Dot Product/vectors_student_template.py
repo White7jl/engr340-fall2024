@@ -10,6 +10,12 @@ def generate_random_int_list(list_length, upper_bound):
     # return the generated list
     return randoms
 
+def dot_product(va,vb):  ##finding the dot product of 2 vectors
+    dot_product = 0
+    for n in range(len(va)):
+        dot_product += (va[n] * vb[n])
+
+    return dot_product
 
 """
 Step 1: Generate two "vectors" of equal length but full of random values
@@ -25,12 +31,16 @@ Step 2: Iterate through the vector(s) and calculate the dot product
 """
 
 # store your result here. Do not change the name
-dot_product = 0
+dot_product = dot_product(vector_a,vector_b)
 
 ### Your code here
+##alternatively
+## for i in range(len(vector_a)):
+##  dot_product += (vector_a[i]*vector_b[i])
 
 """
-Step 3: Calculate the error of your dot_product compared with numpy's solution
+Step 3:
+Calculate the error of your dot_product compared with numpy's solution
 """
 # check code with numpy...
 a_np = np.asarray(vector_a)

@@ -10,6 +10,20 @@ Note: this problem does not require the "compounding interest" formula from the 
 
 ### Your code here ###
 
-in_state_gift = 0
+in_state_cost = 30792  ## In-state total cost for the academic year 2024-2025
 
-out_state_gift = 0
+out_state_cost = 47882 ## Out-state total cost for the academic year 2024-2025
+
+return_rate = 0.05      ## 5% return rate per
+
+minimum_donation1 = in_state_cost/return_rate
+print ("This is the minimum donation to cover in_state_cost $", minimum_donation1) #
+
+minimum_dontion2 = out_state_cost/return_rate
+print ("This is the minimum donation to cover out_state_cost $", minimum_dontion2)
+
+## find the ratio
+
+in_state_gift = 615840
+
+out_state_gift = 957640

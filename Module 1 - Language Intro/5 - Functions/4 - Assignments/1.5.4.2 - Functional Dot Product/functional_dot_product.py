@@ -19,7 +19,7 @@ def dot_product(a,b):
     """
 
     ### YOUR CODE HERE ###
-
+dot_product()
 
     ### CHANGE THIS RETURN VALUE. IT IS HERE SO THE CODE DOES NOT ERROR
     return None

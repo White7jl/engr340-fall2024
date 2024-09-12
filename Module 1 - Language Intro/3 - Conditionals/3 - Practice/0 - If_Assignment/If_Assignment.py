@@ -15,9 +15,10 @@ elif age_one > 18 and age_two > 18:
 else:
     result = "Option Three"
 
+print (result)
 # Write your expected outcome here as a string:
 # It is case-sensitive, so make sure they are exactly the same!
-case_one_answer = "Your Answer Here"
+case_one_answer = "Option Three"
 
 # Case #2:
 
@@ -34,4 +35,5 @@ else:
     weather_report = "Unavailable"
 
 # Write your expected answer here as a string:
-case_two_answer = "Your Answer Here"
+case_two_answer = "It's nice out"
+print (weather_report)
