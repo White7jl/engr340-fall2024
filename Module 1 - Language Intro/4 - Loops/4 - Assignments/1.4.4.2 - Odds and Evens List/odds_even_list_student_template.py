@@ -27,10 +27,19 @@ nums = generate_random_int_list(max_length, upper_bound)
 evens_list = []
 odds_list = []
 
+even_nums = 0
+odd_nums = 0
+
 """
 Step 1: Write a FOR loop to iterate through the list nums
 """
-
+for num in nums:                ##where num means any number in the nums function
+    if num %2 == 0:
+        evens_list.append(num)
+        print (evens_list)
+    else:
+        odds_list.append(num)
+        print (odds_list)
 
 """
 Step 2: Inside the FOR loop, examine the contents of nums. If the
