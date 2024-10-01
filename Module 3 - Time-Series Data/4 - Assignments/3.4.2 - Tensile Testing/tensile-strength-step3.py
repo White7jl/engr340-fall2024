@@ -64,7 +64,7 @@ def calculate_stress(force, sample_diameter):
     area = (math.pi*(sample_diameter/2)**2)
     # calculate stress (MPa) from load (kN) and cross-sectional area
     ### your code here ###
-    stress = force/area
+    stress = force/area * 1000
     # delete this line and replace it with your own
 
     return stress
@@ -88,6 +88,7 @@ def calculate_max_strength_strain(strain, stress):
     return ultimate_tensile_stress, fracture_strain
     #return -1, -1
 
+
 def calculate_elastic_modulus(strain, stress):
     """
         Given a set of stress strain data, use the Secant Modulus at 40% method to determine
@@ -109,7 +110,7 @@ def calculate_elastic_modulus(strain, stress):
     # use from 0 to that value to create a linear plot
 
     ### your code below ###
-    secant_strain = stress/strain
+    secant_strain = max(stress)*0.40
 
     # Step 3b: find the intersection between 40% line and the curvey
     # take the abs() difference between the stress vector and secant_straint point
@@ -121,20 +122,20 @@ def calculate_elastic_modulus(strain, stress):
     # this will be the INDEX of the point in stress-strain that is closest to
     # secant_strain intersection
 
-    # uncomment the line below and replace with your own
+    # uncomment the line below and replace with your own ##argmax tells location of max and max give you number
     linear_index = np.argmin(diffs)
 
     # Step 3c: down select to linear region for stress and strain
     # using list slicing. Uncomment lines below
-    # linear_stress = stress[# list slice#]
-    # linear_strain = strain[#list slice#]
+    linear_stress = stress[0:linear_index]                      ##start at 0 and go up until the index
+    linear_strain = strain[0:linear_index]
 
     # Step 3d: find least squares fit to a line in the linear region
     # use 1-degree polynominal fit (line) from np.polyfit
     # save the slope and intercept so we can plot the line later
 
     # uncomment the line below and call np.polyfit slop  -> y=mx+b -> shift right y= f(x-a)
-    # slope, intercept = ....
+    slope, intercept = np.polyfit(linear_strain,linear_stress,deg=1)
 
     return linear_index, slope, intercept
 
