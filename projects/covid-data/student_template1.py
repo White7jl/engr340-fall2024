@@ -1,5 +1,6 @@
 import sys
 import pandas as pd
+import pandas as pd
 
 def parse_nyt_data(file_path=''):
     """
@@ -58,7 +59,15 @@ def parse_nyt_data(file_path=''):
 
     return data
 
-data1 = pd.DataFrame()
+
+#data1 = {'date': [], 'county': [], 'state': [], 'flips': [], 'cases': [], 'deaths': []}
+#df = pd.DataFrame(data1, columns=['date', 'county', 'state', 'flips', 'cases', 'deaths'])
+#print(df)
+#RockinghamHarrisonburg_list = [df]
+
+data_list = pd.DataFrame(parse_nyt_data('us-counties.csv'))
+##data_list = df[1] != 'Rockingham' or 'Harrisonburg'
+print(data_list)
 
 def first_question(data):
     """
@@ -67,10 +76,11 @@ def first_question(data):
     # When was the first positive COVID case in Harrisonburg?
     :return:
     """
-
     # your code here
-
-    return
+    for row in data_list:
+        if 1 == 'Rockingham' or 'Harrisonburg':
+            print(data_list[1].index)
+            break
 
 def second_question(data):
     """
@@ -92,10 +102,8 @@ def third_question(data):
 
 if __name__ == "__main__":
     data = parse_nyt_data('us-counties.csv')
-
     ##for (date, county, state, cases, deaths) in data:
         ##print('On ', date, ' in ', county, ' ', state, ' there were ', cases, ' cases and ', deaths, ' deaths')
-
 
     # write code to address the following question: Use print() to display your responses.
     # When was the first positive COVID case in Rockingham County?
