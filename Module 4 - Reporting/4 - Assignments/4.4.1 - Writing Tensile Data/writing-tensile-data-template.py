@@ -14,7 +14,7 @@ def generate_csv_file(filename, results):
     # Step 1: create a variable to hold the file name
 
     # uncomment this line
-    output_file_name ="tensile_data.csv"
+    output_file_name = filename
 
     # Step 2: use open() to open the file in write mode. Set the return of open()
     # to a variable name that will be your file handle
@@ -48,7 +48,7 @@ def generate_csv_file(filename, results):
         # Make sure an endline character '\n' is always at the end of your string!
 
         # uncomment the line below
-        string_to_write = file_header
+        string_to_write = str(name)+","+str(material_type)+","+str(tensile_strength)+","+str(fracture_strain)+","+str(modulus)+","+str(yield_strength)+'\n'
 
         # Finally, given that long string, write it to a file
 
