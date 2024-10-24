@@ -1,6 +1,7 @@
-import numpy as np
-from scipy.stats import ttest_1samp, norm, ttest_ind
+from fileinput import filename
 
+import numpy as np
+from scipy.stats import ttest_1samp
 
 def write_to_csv(filename: str, data):
     """
@@ -20,7 +21,6 @@ def write_to_csv(filename: str, data):
 
     file.close()
 
-
 def one_sample_tests(_files: list, _mean: float, _alpha: float, _less_than: bool):
     """
     Conduct a one-sided t-test, either left or ride sided. Null hypothesis is the means are equal.
@@ -35,7 +35,17 @@ def one_sample_tests(_files: list, _mean: float, _alpha: float, _less_than: bool
     reject_null_hypothesis = []
 
     # YOUR CODE HERE #
-
+    for f in _files:
+        data = np.loadtxt(f)
+        if _less_than == True:
+            (stat, p_value) = ttest_1samp(data, popmean=_mean, alternative='less')
+            if p_value < _alpha:
+                reject_null_hypothesis.append(f)
+        else:
+            if _less_than == False:
+                (stat, p_value) = ttest_1samp(data, popmean=_mean, alternative='greater')
+                if p_value < _alpha:
+                    reject_null_hypothesis.append(f)
     # return samples that were rejected
     return reject_null_hypothesis
 
