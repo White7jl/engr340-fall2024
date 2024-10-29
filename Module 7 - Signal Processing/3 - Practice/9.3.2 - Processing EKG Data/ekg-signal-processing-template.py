@@ -18,26 +18,29 @@ signal_filepath = path_to_folder + database_name + ".csv"
 Step #1: load data in matrix from CSV file; skip first two rows. Call the data signal.
 """
 
-signal = 0
+#signal = 0
 ## YOUR CODE HERE ##
+signal = np.loadtxt(signal_filepath, skiprows=2, delimiter=",")
 
 """
 Step 2: (OPTIONAL) pass data through LOW PASS FILTER (fs=250Hz, fc=15, N=6). These may not be correctly in radians
 """
 
 ## YOUR CODE HERE ##
+np.convolve()
 
 """
 Step 3: Pass data through weighted differentiator
 """
 
 ## YOUR CODE HERE ##
-
+np.diff()
 
 """
 Step 4: Square the results of the previous step
 """
  ## YOUR CODE HERE ##
+np.square()
 
 """
 Step 5: Pass a moving filter over your data
