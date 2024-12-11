@@ -1,6 +1,7 @@
 import numpy as np
 from ekg_testbench import EKGTestBench
-from scipy.signal import find_peaks
+from scipy.signal import find_peaks,butter,filtfilt
+
 
 def detect_heartbeats(filepath):
     """
@@ -23,33 +24,42 @@ def detect_heartbeats(filepath):
     column_two = data[:,1]
     column_three = data[:,2]
 
-
     # identify one column to process. Call that column signal
 
     signal = column_three ## your code here
 
     # pass data through LOW PASS FILTER (OPTIONAL)
     ## your code here
+    filter_order = 6
+    f_s = 1000
+    f_c_low = 200
+
+    b_low,a_low = butter(filter_order,f_c_low,btype='lowpass', fs=f_s)
+    lowpass = filtfilt(b_low,a_low,signal)
 
     # pass data through HIGH PASS FILTER (OPTIONAL) to create BAND PASS result
     ## your code here
+    f_c_high = 1
+
+    b_high,a_high = butter(filter_order,f_c_high,btype='highpass',fs=f_s)
+    highpass  = filtfilt(b_high, a_high, lowpass)
 
     # pass data through differentiator
-    diff = np.diff(signal)
+    diff = np.diff(highpass)
 
     # pass data through square function
-    sqaure = np.square(diff)
+    square = np.square(diff)
 
     # pass through moving average window
-    moving_average = np.square(np.diff(sqaure))
+    moving_avg = np.convolve(square,np.ones(100))
 
     # use find_peaks to identify peaks within averaged/filtered data
     # save the peaks result and return as part of testbench result
 
     ## your code here
-    peaks,_ = find_peaks(signal, distance=100,height=2)
-
+    peaks,_ = find_peaks(moving_avg, distance=100,height=0.1)
     beats = peaks
+
 
     # do not modify this line
     return signal, beats
@@ -65,13 +75,13 @@ if __name__ == "__main__":
     database_name = 'mitdb_201'
 
     # set to true if you wish to generate a debug file
-    file_debug = False
+    file_debug = True
 
     # set to true if you wish to print overall stats to the screen
     print_debug = True
 
     # set to true if you wish to show a plot of each detection process
-    show_plot = False
+    show_plot = True
 
     ### DO NOT MODIFY BELOW THIS LINE!!! ###
 
